@@ -1,0 +1,27 @@
+
+/////// REQUISITOS ///////
+1. Listar las canciones de esta API utilizando la Fetch API. (La API del link no está disponible)
+
+2. Cuando el usuario hace clic en una canción, el player (reproductor) debe comenzar a reproducirla.
+
+3. Cuando el usuario hace clic en el botón "siguiente", el reproductor debe comenzar a reproducir la siguiente canción de la lista, si no hay una canción siguiente, debe comenzar nuevamente a reproducir la primera canción de la lista, lo mismo aplica para el botón "anterior".
+
+4. Usa el atributo react ref para obtener la etiqueta o tag de audio del DOM.
+
+5. Asegurate de que haya una sola etiqueta o tag <audio> en todo el proyecto, usa refpara cambiar su src url.
+
+
+/////// RECOMENDACIONES ///////
+1. Usa la funcion useRef.
+2. No llames a la función setState porque perderá el estado de la etiqueta de audio si se llama a la función de render
+
+
+/////// TE SIENTES CON CONFIANZA? [ plus ] ///////
+1. Implementa control de volumen": dos botones, uno para subir y otro para bajar el volumen.
+
+2. Modo repeticion: un checkbox que cuando esta activo, la cancion se repetirá eternamente.
+
+3. Aleatorio: un botón que al presionarlo reproduzca una canción aleatoriamente.
+
+4. Medidor de progreso de la canción: Implementa un slider o progress bar que se complete a medida que la cancion se reproduce.
+
