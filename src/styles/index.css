@@ -1,6 +1,7 @@
 
 body {
     background: black;
+    overflow: hidden;
 }
 
 .container-nav {
@@ -14,6 +15,10 @@ body {
 
 .nav-link:hover {
     color: white;
+    background: rgba(128, 128, 128, 0.1);
+}
+
+.nav-link:active {
     background: rgba(128, 128, 128, 0.5);
 }
 
@@ -41,13 +46,17 @@ button {
     color: white;
 }
 
+button:hover {
+    background: rgba(70, 70, 70, 0.4);
+}
+
 button:active {
-    background: rgba(128, 128, 128, 0.2);
+    background: rgba(128, 128, 128, 0.3);
 }
 
 .song {
     display: flex;
-    padding: 15px;
+    padding: 15px 30px;
     border-bottom: rgba(150, 150, 150, 0.5) 1px solid;
 }
 
@@ -65,4 +74,10 @@ button:active {
 
 .songName {
     margin-left: 40px;
+}
+
+.container-songs {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 85vh;
 }
