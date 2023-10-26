@@ -4,6 +4,8 @@ const SongPlayer = () => {
 
     const [songs, setSongs] = useState([]);
     const [songIndex, setSongIndex] = useState(0);
+    const [isPlaying, setIsPlaying] = useState(false);
+
     const songRef = useRef(null);
 
     const songsURL = "https://playground.4geeks.com/apis/fake/sound/songs";
@@ -29,20 +31,54 @@ const SongPlayer = () => {
     }, []);
     /* ----- / ----- ----- -----/----- */
 
-    const playSong = () => {
+    const playSong = (index) => {
 
+        setIsPlaying(true);
+        setSongIndex(index);
+
+        const song = songs[index];
+
+        songRef.current.src = baseSongURL + song.url;
+        songRef.current.play();
+
+        toggleButtons();
     }
 
     const stopSong = () => {
 
+        setIsPlaying(false);
+        setSongIndex(songIndex);
+        songRef.current.pause();
+
+        toggleButtons();
+    }
+
+    const toggleButtons = () => {
+        if (isPlaying) {
+            document.querySelector('.button-play').classList.add('d-none');
+            document.querySelector('.button-pause').classList.remove('d-none');
+        } else {
+            document.querySelector('.button-play').classList.remove('d-none');
+            document.querySelector('.button-pause').classList.add('d-none');
+        }
     }
 
     const nextSong = () => {
+        let nextIndex = songIndex + 1;
+        if (nextIndex >= songs.length) {
+            nextIndex = 0;
+        }
 
+        playSong(nextIndex);
     }
 
     const previousSong = () => {
+        let prevIndex = songIndex - 1;
+        if (prevIndex < 0) {
+            prevIndex = songs.length - 1;
+        }
 
+        playSong(prevIndex);
     }
 
 
@@ -82,7 +118,7 @@ const SongPlayer = () => {
                 </button>
 
                 {/* Stop song */}
-                <button onClick={stopSong} className="button-pause d-none">
+                <button onClick={() => stopSong()} className="button-pause d-none">
                     <i class="icon-audio fa-solid fa-pause"></i>
                 </button>
 
