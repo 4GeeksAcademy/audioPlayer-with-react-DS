@@ -6,13 +6,19 @@ const SongPlayer = () => {
     const [songIndex, setSongIndex] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
 
+    const [playToggle, setPlayToggle] = useState(false);
+
     const songRef = useRef(null);
 
     const songsURL = "https://playground.4geeks.com/apis/fake/sound/songs";
     const baseSongURL = "https://assets.breatheco.de/apis/sound/"; // Base URL
 
-    /* ----- / OBTENER CANCIONES / ----- */
+
+
     useEffect(() => {
+
+        /* ----- / OBTENER CANCIONES / ----- */
+
         fetch(songsURL)
             .then((response) => { // Aqui es donde pones lo que quieres hacer con la respuesta
                 if (!response.ok) {
@@ -28,10 +34,23 @@ const SongPlayer = () => {
             .catch((error) => {
                 console.log('Parece que hay un problema', error);
             })
-    }, []);
-    /* ----- / ----- ----- -----/----- */
+
+        /* ----- / INTERCAMBIAR BTN PLAY Y PAUSE / ----- */
+
+        if (isPlaying) {
+            document.querySelector('.button-play').classList.add('d-none');
+            document.querySelector('.button-pause').classList.remove('d-none');
+        } else {
+            document.querySelector('.button-play').classList.remove('d-none');
+            document.querySelector('.button-pause').classList.add('d-none');
+        }
+    }, [isPlaying]);
+
+    /* ----- / FUNCIONES BUTTONS / ----- */
 
     const playSong = (index) => {
+
+        // toggleButtons();
 
         setIsPlaying(true);
         setSongIndex(index);
@@ -41,26 +60,16 @@ const SongPlayer = () => {
         songRef.current.src = baseSongURL + song.url;
         songRef.current.play();
 
-        toggleButtons();
     }
 
     const stopSong = () => {
+
+        // toggleButtons();
 
         setIsPlaying(false);
         setSongIndex(songIndex);
         songRef.current.pause();
 
-        toggleButtons();
-    }
-
-    const toggleButtons = () => {
-        if (isPlaying) {
-            document.querySelector('.button-play').classList.add('d-none');
-            document.querySelector('.button-pause').classList.remove('d-none');
-        } else {
-            document.querySelector('.button-play').classList.remove('d-none');
-            document.querySelector('.button-pause').classList.add('d-none');
-        }
     }
 
     const nextSong = () => {
@@ -84,6 +93,7 @@ const SongPlayer = () => {
 
     return (
         <>
+            {/* ----- / Songs / ----- */}
             <div className="container-songs text-white">
                 <div>
                     {songs.map((song, i) => {
