@@ -50,8 +50,6 @@ const SongPlayer = () => {
 
     const playSong = (index) => {
 
-        // toggleButtons();
-
         setIsPlaying(true);
         setSongIndex(index);
 
@@ -63,8 +61,6 @@ const SongPlayer = () => {
     }
 
     const stopSong = () => {
-
-        // toggleButtons();
 
         setIsPlaying(false);
         setSongIndex(songIndex);
@@ -98,7 +94,7 @@ const SongPlayer = () => {
                 <div>
                     {songs.map((song, i) => {
                         return (
-                            <div className="song">
+                            <div className="song" onClick={() => playSong(i)}>
                                 <h3 className="songNumber">
                                     {i + 1}
                                 </h3>
