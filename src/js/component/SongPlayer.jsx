@@ -6,8 +6,6 @@ const SongPlayer = () => {
     const [songIndex, setSongIndex] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
 
-    const [playToggle, setPlayToggle] = useState(false);
-
     const songRef = useRef(null);
 
     const songsURL = "https://playground.4geeks.com/apis/fake/sound/songs";
